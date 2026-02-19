@@ -1,73 +1,85 @@
+const imageSrc = (fileName) => encodeURI(`img/${fileName}`);
+
 const RESOURCES = [
-  { id: "ironOre", name: "Железная руда", weight: 1 },
-  { id: "polyElementOre", name: "Полиэлементная руда", weight: 1 },
-  { id: "polyOrganicOre", name: "Полиорганическая руда", weight: 1 },
-  { id: "uranium", name: "Уран", weight: 2 },
-  { id: "mitracite", name: "Митрацит", weight: 2 },
-  { id: "iridium", name: "Иридиум", weight: 2 },
-  { id: "crokite", name: "Крокит", weight: 3 },
-  { id: "bradium", name: "Брадий", weight: 10 },
-  { id: "titanite", name: "Титанит", weight: 20 },
-  { id: "noxicum", name: "Ноксикум", weight: 50 },
-  { id: "isidrite", name: "Изидрит", weight: 50 },
-  { id: "seronium", name: "Сероний", weight: 50 },
-  { id: "zucrite", name: "Зукрит", weight: 50 },
-  { id: "milanox", name: "Миланокс", weight: 50 },
-  { id: "orex", name: "Орекс", weight: 50 },
-  { id: "zabrosin", name: "Заброзин", weight: 50 },
-  { id: "quantium", name: "Квантиум", weight: 100 },
-  { id: "levium", name: "Левиум", weight: 100 }
+  { id: "ironOre", name: "Железная руда", weight: 1, iconSrc: imageSrc("железная.png") },
+  { id: "polyElementOre", name: "Полиэлементная руда", weight: 1, iconSrc: imageSrc("полиэлементная.png") },
+  { id: "polyOrganicOre", name: "Полиорганическая руда", weight: 1, iconSrc: imageSrc("полиорганическая.png") },
+  { id: "uranium", name: "Уран", weight: 2, iconSrc: imageSrc("уран.png") },
+  { id: "mitracite", name: "Митрацит", weight: 2, iconSrc: imageSrc("митрацит.png") },
+  { id: "iridium", name: "Иридиум", weight: 2, iconSrc: imageSrc("иридиум.png") },
+  { id: "crokite", name: "Крокит", weight: 3, iconSrc: imageSrc("крокит.png") },
+  { id: "bradium", name: "Брадий", weight: 10, iconSrc: imageSrc("брадий.png") },
+  { id: "titanite", name: "Титанит", weight: 20, iconSrc: imageSrc("титанит.png") },
+  { id: "noxicum", name: "Ноксикум", weight: 50, iconSrc: imageSrc("ноксикум.png") },
+  { id: "isidrite", name: "Изидрит", weight: 50, iconSrc: imageSrc("изидрит.png") },
+  { id: "seronium", name: "Сероний", weight: 50, iconSrc: imageSrc("сероний.png") },
+  { id: "zucrite", name: "Зукрит", weight: 50, iconSrc: imageSrc("зукрит.png") },
+  { id: "milanox", name: "Миланокс", weight: 50, iconSrc: imageSrc("миланокс.png") },
+  { id: "orex", name: "Орекс", weight: 50, iconSrc: imageSrc("орекс.png") },
+  { id: "zabrosin", name: "Заброзин", weight: 50, iconSrc: imageSrc("заброзин.png") },
+  { id: "quantium", name: "Квантиум", weight: 100, iconSrc: imageSrc("квантиум.png") },
+  { id: "levium", name: "Левиум", weight: 100, iconSrc: imageSrc("левиум.png") }
 ];
 
 const MATERIALS = [
   {
     id: "rolledMetal",
     name: "Металлопрокат",
+    iconSrc: imageSrc("металлопрокат.png"),
     recipe: { ironOre: 2, polyElementOre: 1 }
   },
   {
     id: "constructionMaterials",
     name: "Строительные материалы",
+    iconSrc: imageSrc("строительные материалы.png"),
     recipe: { ironOre: 1, polyElementOre: 2, polyOrganicOre: 1 }
   },
   {
     id: "reinforcedConcrete",
     name: "Железобетон",
+    iconSrc: imageSrc("железобетон.png"),
     recipe: { ironOre: 2, polyElementOre: 2 }
   },
   {
     id: "electronicComponents",
     name: "Электронные компоненты",
+    iconSrc: imageSrc("электронные компоненты.png"),
     recipe: { ironOre: 1, polyElementOre: 1, crokite: 1 }
   },
   {
     id: "aluminum",
     name: "Алюминий",
+    iconSrc: imageSrc("алюминий.png"),
     recipe: { ironOre: 1, polyElementOre: 2, iridium: 1 }
   },
   {
     id: "steel",
     name: "Сталь",
+    iconSrc: imageSrc("сталь.png"),
     recipe: { ironOre: 2, polyElementOre: 1, mitracite: 1 }
   },
   {
     id: "titaniumAlloy",
     name: "Титановый сплав",
+    iconSrc: imageSrc("титановый сплав.png"),
     recipe: { ironOre: 1, polyElementOre: 1, titanite: 1 }
   },
   {
     id: "nanofiber",
     name: "Нановолокно",
+    iconSrc: imageSrc("нановолокно.png"),
     recipe: { ironOre: 1, polyElementOre: 1, bradium: 1 }
   },
   {
     id: "polymers",
     name: "Полимеры",
+    iconSrc: imageSrc("полимеры.png"),
     recipe: { polyOrganicOre: 2, polyElementOre: 1 }
   },
   {
     id: "composites",
     name: "Композиты",
+    iconSrc: imageSrc("композиты.png"),
     recipe: {
       polyOrganicOre: 2,
       polyElementOre: 1,
@@ -104,6 +116,7 @@ const conversionError = document.getElementById("conversion-error");
 const sourceEmpty = document.getElementById("source-empty");
 const targetEmpty = document.getElementById("target-empty");
 const kpmInput = document.getElementById("kpm-input");
+const taxInput = document.getElementById("tax-input");
 
 let materialsCopyText = "";
 let conversionCopyText = "";
@@ -159,6 +172,21 @@ function populateUniqueSelect(select, items, usedValues, currentValue) {
     : filtered[0].id;
 }
 
+function setIcon(imgElement, item) {
+  if (!imgElement) {
+    return;
+  }
+  imgElement.src = item?.iconSrc || "";
+  imgElement.alt = item?.name || "";
+}
+
+function getTargetItem(type, id) {
+  if (!id) {
+    return null;
+  }
+  return type === "material" ? MATERIAL_BY_ID[id] : RESOURCE_BY_ID[id];
+}
+
 function renderTable(container, headers, rows) {
   container.innerHTML = "";
   if (!rows.length) {
@@ -182,7 +210,23 @@ function renderTable(container, headers, rows) {
     const tr = document.createElement("tr");
     row.forEach((cell) => {
       const td = document.createElement("td");
-      td.textContent = cell;
+      if (cell && typeof cell === "object" && "text" in cell) {
+        if (cell.iconSrc) {
+          const wrapper = document.createElement("span");
+          wrapper.className = "name-cell";
+          const img = document.createElement("img");
+          img.src = cell.iconSrc;
+          img.alt = cell.text;
+          const text = document.createElement("span");
+          text.textContent = cell.text;
+          wrapper.append(img, text);
+          td.appendChild(wrapper);
+        } else {
+          td.textContent = cell.text;
+        }
+      } else {
+        td.textContent = cell;
+      }
       tr.appendChild(td);
     });
     tbody.appendChild(tr);
@@ -293,6 +337,8 @@ function updateMaterialsSelectors() {
     const current = select.value;
     const usedByOthers = new Set(chosen.filter((value) => value !== current));
     populateUniqueSelect(select, MATERIALS, usedByOthers, current);
+    const icon = select.closest(".entry")?.querySelector(".entry-icon");
+    setIcon(icon, MATERIAL_BY_ID[select.value]);
   });
 
   addMaterialBtn.disabled = selects.length >= MATERIALS.length;
@@ -305,6 +351,7 @@ function addMaterialRow() {
   const row = document.createElement("div");
   row.className = "entry";
   row.innerHTML = `
+    <img class="entry-icon" alt="">
     <select class="material-select"></select>
     <input class="material-amount" type="number" min="0" step="0.01" value="1" aria-label="Количество материала в трлн">
     <button class="remove-btn" type="button" aria-label="Удалить материал">✕</button>
@@ -362,6 +409,7 @@ function calculateMaterials() {
   }
 
   const tableRows = [];
+  const resourceLines = [];
   let totalMass = 0;
   RESOURCES.forEach((resource) => {
     const quantity = required[resource.id];
@@ -369,10 +417,11 @@ function calculateMaterials() {
       const mass = quantity * resource.weight;
       totalMass += mass;
       tableRows.push([
-        resource.name,
+        { text: resource.name, iconSrc: resource.iconSrc },
         formatNumber(quantity),
         formatNumber(mass)
       ]);
+      resourceLines.push(`${resource.name}: ${formatNumber(quantity)} трлн (масса ${formatNumber(mass)})`);
     }
   });
 
@@ -382,11 +431,9 @@ function calculateMaterials() {
     "Матоварка",
     ...materialLines,
     "",
-    "Требуемые ресурсы:"
+    "Требуемые ресурсы:",
+    ...resourceLines
   ];
-  tableRows.forEach((row) => {
-    resultLines.push(`${row[0]}: ${row[1]} трлн (масса ${row[2]})`);
-  });
   resultLines.push(`Итого масса: ${formatNumber(totalMass)}`);
 
   materialsCopyText = resultLines.join("\n");
@@ -401,6 +448,8 @@ function updateSourceSelectors() {
     const current = select.value;
     const usedByOthers = new Set(chosen.filter((value) => value !== current));
     populateUniqueSelect(select, RESOURCES, usedByOthers, current);
+    const icon = select.closest(".entry")?.querySelector(".entry-icon");
+    setIcon(icon, RESOURCE_BY_ID[select.value]);
   });
 
   addSourceBtn.disabled = selects.length >= RESOURCES.length;
@@ -413,6 +462,7 @@ function addSourceRow() {
   const row = document.createElement("div");
   row.className = "entry";
   row.innerHTML = `
+    <img class="entry-icon" alt="">
     <select class="source-select"></select>
     <input class="source-amount" type="number" min="0" step="0.01" value="1" aria-label="Количество ресурса в трлн">
     <button class="remove-btn" type="button" aria-label="Удалить ресурс">✕</button>
@@ -474,6 +524,8 @@ function updateTargetSelectors() {
 
     const items = currentType === "resource" ? RESOURCES : MATERIALS;
     populateUniqueSelect(valueSelect, items, usedByOthers, currentValue);
+    const icon = row.querySelector(".entry-icon");
+    setIcon(icon, getTargetItem(currentType, valueSelect.value));
   });
 
   addTargetBtn.disabled = !hasAvailableTarget();
@@ -499,6 +551,7 @@ function addTargetRow() {
   const row = document.createElement("div");
   row.className = "entry entry-target";
   row.innerHTML = `
+    <img class="entry-icon" alt="">
     <select class="target-type" aria-label="Тип цели">
       <option value="resource">Ресурс</option>
       <option value="material">Материал</option>
@@ -510,6 +563,9 @@ function addTargetRow() {
   const typeSelect = row.querySelector(".target-type");
   typeSelect.value = defaultType;
   typeSelect.addEventListener("change", () => {
+    updateTargetSelectors();
+  });
+  row.querySelector(".target-value").addEventListener("change", () => {
     updateTargetSelectors();
   });
   row.querySelector(".remove-btn").addEventListener("click", () => {
@@ -561,6 +617,11 @@ function calculateConversion() {
     conversionError.textContent = "КПМ должен быть числом и не меньше 2.";
     return;
   }
+  const tax = parseNumber(taxInput.value);
+  if (!Number.isFinite(tax) || tax < 0 || tax > 100) {
+    conversionError.textContent = "Налог должен быть числом от 0 до 100%.";
+    return;
+  }
 
   const sourceRows = [...sourceList.querySelectorAll(".entry")];
   const targetRows = [...targetList.querySelectorAll(".entry-target")];
@@ -579,11 +640,14 @@ function calculateConversion() {
     return;
   }
   const sourceMap = readResult.sourceMap;
-  const totalMass = totalMassFromSource(sourceMap);
-  if (totalMass <= 0) {
+  const totalMassBeforeTax = totalMassFromSource(sourceMap);
+  if (totalMassBeforeTax <= 0) {
     conversionError.textContent = "Суммарная масса исходных ресурсов должна быть больше 0.";
     return;
   }
+  const taxFactor = (100 - tax) / 100;
+  const sourceMapAfterTax = scaleSourceMap(sourceMap, taxFactor);
+  const totalMassAfterTax = totalMassFromSource(sourceMapAfterTax);
 
   const targets = [];
   for (const row of targetRows) {
@@ -602,7 +666,9 @@ function calculateConversion() {
   const copyLines = [
     "Преобразование",
     `КПМ: ${formatNumber(kpm)}`,
-    `Суммарная исходная масса: ${formatNumber(totalMass)}`,
+    `Налог: ${formatNumber(tax)}%`,
+    `Суммарная исходная масса: ${formatNumber(totalMassBeforeTax)}`,
+    `Эффективная масса после налога: ${formatNumber(totalMassAfterTax)}`,
     `Режим нескольких целей: общий пул делится поровну (${targets.length} шт.)`,
     "",
     "Результаты:"
@@ -611,14 +677,15 @@ function calculateConversion() {
   for (const target of targets) {
     const targetType = target.targetType;
     const targetId = target.targetId;
-    const targetSourceMap = scaleSourceMap(sourceMap, perTargetFactor);
+    const targetSourceMap = scaleSourceMap(sourceMapAfterTax, perTargetFactor);
+    const baseNote = `Доля пула: 1/${targets.length}. Налог: ${formatNumber(tax)}%.`;
 
     if (targetType === "resource") {
       const resource = RESOURCE_BY_ID[targetId];
       const conversion = maxResourceConversion(targetId, targetSourceMap, kpm);
-      const note = `Доля пула: 1/${targets.length}. Прямо: ${formatNumber(conversion.direct)}, через преобразование: ${formatNumber(conversion.converted)}`;
+      const note = `${baseNote} Прямо: ${formatNumber(conversion.direct)}, через преобразование: ${formatNumber(conversion.converted)}`;
       tableRows.push([
-        resource.name,
+        { text: resource.name, iconSrc: resource.iconSrc },
         "Ресурс",
         formatNumber(conversion.max),
         note
@@ -627,9 +694,9 @@ function calculateConversion() {
     } else {
       const material = MATERIAL_BY_ID[targetId];
       const maxAmount = maxMaterialProduction(targetId, targetSourceMap, kpm);
-      const note = `Доля пула: 1/${targets.length}. Максимум при оптимальном использовании прямых ресурсов и конвертации.`;
+      const note = `${baseNote} Максимум при оптимальном использовании прямых ресурсов и конвертации.`;
       tableRows.push([
-        material.name,
+        { text: material.name, iconSrc: material.iconSrc },
         "Материал",
         formatNumber(maxAmount),
         note
@@ -668,8 +735,19 @@ copyConversionBtn.addEventListener("click", () =>
 kpmInput.addEventListener("change", () => {
   const value = parseNumber(kpmInput.value);
   if (!Number.isFinite(value) || value < 2) {
-    kpmInput.value = "2";
+    kpmInput.value = "2.048";
   }
+});
+
+taxInput.addEventListener("change", () => {
+  let value = parseNumber(taxInput.value);
+  if (!Number.isFinite(value) || value < 0) {
+    value = 0;
+  }
+  if (value > 100) {
+    value = 100;
+  }
+  taxInput.value = String(Math.round(value));
 });
 
 addMaterialRow();
