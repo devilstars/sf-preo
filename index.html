@@ -1,94 +1,147 @@
 <!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Калькулятор для преобразователя материи</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <main class="app">
-    <header class="hero">
-      <h1>Калькулятор для преобразователя материи</h1>
-      <p>Калькулятор ресурсов и материалов. Все значения указываются в трлн.</p>
-    </header>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Калькулятор для преобразователя материи</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <main class="app">
+            <header class="hero">
+                <h1>Калькулятор для преобразователя материи</h1>
+                <p>
+                    Калькулятор ресурсов и материалов. Все значения указываются
+                    в трлн.
+                </p>
+            </header>
 
-    <nav class="tabs" aria-label="Режимы калькулятора">
-      <button class="tab tab-active" data-mode="conversion">Преобразование</button>
-      <button class="tab" data-mode="materials">Матоварка</button>
-    </nav>
+            <nav class="tabs" aria-label="Режимы калькулятора">
+                <button class="tab tab-active" data-mode="conversion">
+                    Преобразование
+                </button>
+                <button class="tab" data-mode="materials">Матоварка</button>
+            </nav>
 
-    <section class="panel panel-hidden" id="panel-materials">
-      <h2>Матоварка</h2>
-      <p class="hint">Добавьте материалы и укажите, сколько нужно произвести.</p>
-      <div class="controls-row">
-        <button id="add-material-btn" class="btn">Добавить материал</button>
-        <button id="calc-materials-btn" class="btn btn-primary">Рассчитать</button>
-      </div>
-      <div id="materials-list" class="dynamic-list"></div>
-      <p id="materials-empty" class="hint">Материалы ещё не добавлены.</p>
-      <div id="materials-error" class="error" role="alert"></div>
-      <div class="result-wrap">
-        <div class="result-head">
-          <h3>Нужно ресурсов</h3>
-          <button id="copy-materials-btn" class="btn btn-ghost" disabled>Скопировать</button>
-        </div>
-        <div id="materials-result" class="result-table"></div>
-      </div>
-    </section>
+            <section class="panel panel-hidden" id="panel-materials">
+                <h2>Матоварка</h2>
+                <p class="hint">
+                    Добавьте материалы и укажите, сколько нужно произвести.
+                </p>
+                <div class="controls-row">
+                    <button id="add-material-btn" class="btn">
+                        Добавить материал
+                    </button>
+                    <button id="calc-materials-btn" class="btn btn-primary">
+                        Рассчитать
+                    </button>
+                </div>
+                <div id="materials-list" class="dynamic-list"></div>
+                <p id="materials-empty" class="hint">
+                    Материалы ещё не добавлены.
+                </p>
+                <div id="materials-error" class="error" role="alert"></div>
+                <div class="result-wrap">
+                    <div class="result-head">
+                        <h3>Нужно ресурсов</h3>
+                        <button
+                            id="copy-materials-btn"
+                            class="btn btn-ghost"
+                            disabled
+                        >
+                            Скопировать
+                        </button>
+                    </div>
+                    <div id="materials-result" class="result-table"></div>
+                </div>
+            </section>
 
-    <section class="panel" id="panel-conversion">
-      <h2>Преобразование</h2>
-      <div class="conversion-inputs">
-        <div class="kpm-wrap">
-          <label for="kpm-input">КПМ (минимум 2)</label>
-          <input id="kpm-input" type="number" min="2" step="0.001" value="2.048">
-        </div>
-        <div class="kpm-wrap">
-          <label for="tax-input">Налог (%)</label>
-          <input id="tax-input" type="number" min="0" max="100" step="1" value="0">
-        </div>
-      </div>
-      <p class="hint">Слева укажите, что есть. Справа выберите, что хотите получить. Если налог выше 0, он вычитается из общего пула ресурсов. Если целей несколько, оставшийся пул делится между ними поровну.</p>
+            <section class="panel" id="panel-conversion">
+                <h2>Преобразование</h2>
+                <div class="conversion-inputs">
+                    <div class="kpm-wrap">
+                        <label for="kpm-input">КПМ (минимум 2)</label>
+                        <input
+                            id="kpm-input"
+                            type="number"
+                            min="2"
+                            step="0.001"
+                            value="2.048"
+                        />
+                    </div>
+                    <div class="kpm-wrap">
+                        <label for="tax-input">Налог (%)</label>
+                        <input
+                            id="tax-input"
+                            type="number"
+                            min="0"
+                            max="100"
+                            step="1"
+                            value="0"
+                        />
+                    </div>
+                </div>
+                <p class="hint">
+                    Слева укажите, что есть. Справа выберите, что хотите
+                    получить. Если налог выше 0, он вычитается из общего пула
+                    ресурсов. Если целей несколько, оставшийся пул делится между
+                    ними поровну.
+                </p>
 
-      <div class="split">
-        <div class="column">
-          <div class="column-head">
-            <h3>Исходные ресурсы</h3>
-            <button id="add-source-btn" class="btn">Добавить ресурс</button>
-          </div>
-          <div id="source-list" class="dynamic-list"></div>
-          <p id="source-empty" class="hint">Ресурсы не добавлены.</p>
-        </div>
+                <div class="split">
+                    <div class="column">
+                        <div class="column-head">
+                            <h3>Исходные ресурсы</h3>
+                            <button id="add-source-btn" class="btn">
+                                Добавить ресурс
+                            </button>
+                        </div>
+                        <div id="source-list" class="dynamic-list"></div>
+                        <p id="source-empty" class="hint">
+                            Ресурсы не добавлены.
+                        </p>
+                    </div>
 
-        <div class="column">
-          <div class="column-head">
-            <h3>Желаемые позиции</h3>
-            <button id="add-target-btn" class="btn">Добавить позицию</button>
-          </div>
-          <div id="target-list" class="dynamic-list"></div>
-          <p id="target-empty" class="hint">Позиции не добавлены.</p>
-        </div>
-      </div>
+                    <div class="column">
+                        <div class="column-head">
+                            <h3>Желаемые позиции</h3>
+                            <button id="add-target-btn" class="btn">
+                                Добавить позицию
+                            </button>
+                        </div>
+                        <div id="target-list" class="dynamic-list"></div>
+                        <p id="target-empty" class="hint">
+                            Позиции не добавлены.
+                        </p>
+                    </div>
+                </div>
 
-      <div class="controls-row">
-        <button id="calc-conversion-btn" class="btn btn-primary">Рассчитать</button>
-      </div>
-      <div id="conversion-error" class="error" role="alert"></div>
-      <div class="result-wrap">
-        <div class="result-head">
-          <h3>Результат преобразования</h3>
-          <button id="copy-conversion-btn" class="btn btn-ghost" disabled>Скопировать</button>
-        </div>
-        <div id="conversion-result" class="result-table"></div>
-      </div>
-    </section>
+                <div class="controls-row">
+                    <button id="calc-conversion-btn" class="btn btn-primary">
+                        Рассчитать
+                    </button>
+                </div>
+                <div id="conversion-error" class="error" role="alert"></div>
+                <div class="result-wrap">
+                    <div class="result-head">
+                        <h3>Результат преобразования</h3>
+                        <button
+                            id="copy-conversion-btn"
+                            class="btn btn-ghost"
+                            disabled
+                        >
+                            Скопировать
+                        </button>
+                    </div>
+                    <div id="conversion-result" class="result-table"></div>
+                </div>
+            </section>
 
-    <footer class="footer">
-      Разработка Альянса Свободных Миров Freedome
-    </footer>
-  </main>
+            <footer class="footer">
+                Разработка Альянса Свободных Миров Freedom
+            </footer>
+        </main>
 
-  <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 </html>
