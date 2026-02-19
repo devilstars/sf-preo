@@ -1,0 +1,288 @@
+:root {
+  --bg: #f3f6ff;
+  --surface: #ffffff;
+  --surface-2: #eef3ff;
+  --text: #1f2a44;
+  --muted: #5b6682;
+  --accent: #1e62ff;
+  --accent-2: #0c4ad6;
+  --danger: #b5263f;
+  --line: #d6deef;
+  --ok: #1d7a40;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1000px 500px at 0% 0%, #dfe8ff 0%, transparent 60%),
+    linear-gradient(180deg, #f7f9ff 0%, var(--bg) 100%);
+}
+
+.app {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 16px 36px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.tabs {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.tab {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.tab-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.panel {
+  margin-top: 16px;
+  padding: 18px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 18px rgba(31, 42, 68, 0.06);
+}
+
+.panel h2 {
+  margin: 0;
+}
+
+.panel-hidden {
+  display: none;
+}
+
+.hint {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.controls-row {
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text);
+  padding: 9px 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn:hover {
+  filter: brightness(0.98);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--accent-2);
+}
+
+.btn-ghost {
+  background: #fff;
+}
+
+.dynamic-list {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 1fr 190px auto;
+  gap: 8px;
+  align-items: center;
+  padding: 9px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fbfdff;
+}
+
+.entry-target {
+  grid-template-columns: 150px 1fr auto;
+}
+
+select,
+input[type="number"] {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px;
+  background: #fff;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.remove-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--danger);
+  cursor: pointer;
+}
+
+.kpm-wrap {
+  margin-top: 12px;
+  max-width: 260px;
+}
+
+.kpm-wrap label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.split {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.column {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px;
+  background: #fafcff;
+}
+
+.column-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.column-head h3,
+.result-head h3 {
+  margin: 0;
+}
+
+.error {
+  margin-top: 12px;
+  color: var(--danger);
+  font-size: 14px;
+  min-height: 1.2em;
+}
+
+.result-wrap {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.result-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.result-table {
+  padding: 10px 12px 12px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+thead th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.success-note {
+  color: var(--ok);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.footer {
+  margin-top: 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+@media (max-width: 900px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .entry {
+    grid-template-columns: 1fr;
+  }
+
+  .entry-target {
+    grid-template-columns: 1fr;
+  }
+
+  .remove-btn {
+    width: 100%;
+  }
+}
