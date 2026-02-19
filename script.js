@@ -661,18 +661,16 @@ function calculateConversion() {
   }
 
   const perTargetFactor = 1 / targets.length;
+  const sourceLines = [];
+  RESOURCES.forEach((resource) => {
+    const amount = sourceMap[resource.id] || 0;
+    if (amount > 0) {
+      sourceLines.push(`${resource.name}: ${formatNumber(amount)} трлн`);
+    }
+  });
 
   const tableRows = [];
-  const copyLines = [
-    "Преобразование",
-    `КПМ: ${formatNumber(kpm)}`,
-    `Налог: ${formatNumber(tax)}%`,
-    `Суммарная исходная масса: ${formatNumber(totalMassBeforeTax)}`,
-    `Эффективная масса после налога: ${formatNumber(totalMassAfterTax)}`,
-    `Режим нескольких целей: общий пул делится поровну (${targets.length} шт.)`,
-    "",
-    "Результаты:"
-  ];
+  const desiredLines = [];
 
   for (const target of targets) {
     const targetType = target.targetType;
@@ -690,7 +688,7 @@ function calculateConversion() {
         formatNumber(conversion.max),
         note
       ]);
-      copyLines.push(`${resource.name} (ресурс): ${formatNumber(conversion.max)} трлн. ${note}`);
+      desiredLines.push(`${resource.name}: ${formatNumber(conversion.max)} трлн`);
     } else {
       const material = MATERIAL_BY_ID[targetId];
       const maxAmount = maxMaterialProduction(targetId, targetSourceMap, kpm);
@@ -701,7 +699,7 @@ function calculateConversion() {
         formatNumber(maxAmount),
         note
       ]);
-      copyLines.push(`${material.name} (материал): ${formatNumber(maxAmount)} трлн.`);
+      desiredLines.push(`${material.name}: ${formatNumber(maxAmount)} трлн`);
     }
   }
 
@@ -711,7 +709,16 @@ function calculateConversion() {
     tableRows
   );
 
-  conversionCopyText = copyLines.join("\n");
+  conversionCopyText = [
+    `КПМ: ${formatNumber(kpm)}`,
+    `Налог: ${formatNumber(tax)}%`,
+    "",
+    "Исходные ресурсы:",
+    ...(sourceLines.length ? sourceLines : ["нет"]),
+    "",
+    "Желаемые позиции:",
+    ...(desiredLines.length ? desiredLines : ["нет"])
+  ].join("\n");
   copyConversionBtn.disabled = false;
 }
 
