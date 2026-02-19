@@ -39,11 +39,17 @@
 
     <section class="panel" id="panel-conversion">
       <h2>Преобразование</h2>
-      <div class="kpm-wrap">
-        <label for="kpm-input">КПМ (минимум 2)</label>
-        <input id="kpm-input" type="number" min="2" step="0.01" value="2.1">
+      <div class="conversion-inputs">
+        <div class="kpm-wrap">
+          <label for="kpm-input">КПМ (минимум 2)</label>
+          <input id="kpm-input" type="number" min="2" step="0.001" value="2.048">
+        </div>
+        <div class="kpm-wrap">
+          <label for="tax-input">Налог (%)</label>
+          <input id="tax-input" type="number" min="0" max="100" step="1" value="0">
+        </div>
       </div>
-      <p class="hint">Слева укажите, что есть. Справа выберите, что хотите получить. Если целей несколько, общий пул ресурсов делится между ними поровну.</p>
+      <p class="hint">Слева укажите, что есть. Справа выберите, что хотите получить. Если налог выше 0, он вычитается из общего пула ресурсов. Если целей несколько, оставшийся пул делится между ними поровну.</p>
 
       <div class="split">
         <div class="column">
